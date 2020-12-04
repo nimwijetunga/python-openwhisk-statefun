@@ -63,6 +63,7 @@ def build_response(response_bytes):
     }
     return response
 
+# Apache OpenWhisk serverless function
 def main(args):
     message_bytes = decode_request(args.__ow_body)
     response_bytes = handler(message_bytes)

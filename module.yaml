@@ -23,7 +23,7 @@ module:
             kind: http
             type: example/greeter
           spec:
-            endpoint: http://python-worker:8000/statefun
+            endpoint: {{ OPENWHISK_ENDPOINT_URL }}
             states:
               - seen_count
             maxNumBatchRequests: 500
@@ -34,7 +34,7 @@ module:
             type: statefun.kafka.io/routable-protobuf-ingress
             id: example/names
           spec:
-            address: kafka-broker:9092
+            address: kafka-broker:9092 # replace with kafka broker hosted on AWS
             consumerGroupId: my-group-id
             topics:
               - topic: names
@@ -47,7 +47,7 @@ module:
             type: statefun.kafka.io/generic-egress
             id: example/greets
           spec:
-            address: kafka-broker:9092
+            address: kafka-broker:9092 # replace with kafka broker hosted on AWS
             deliverySemantic:
               type: exactly-once
               transactionTimeoutMillis: 100000
